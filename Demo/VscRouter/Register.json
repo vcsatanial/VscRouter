@@ -1,0 +1,6 @@
+{
+ "view1": "OneViewCtrl",
+ "view2": "TwoViewCtrl",
+ "view3": "ThreeViewCtrl",
+ "view" : "ViewController",
+}
