@@ -66,11 +66,11 @@
 	}];
 }
 -(void)clickEnter3{
-	UIViewController *viewCtrl = [VscRouter detect:@"view3?userid=116359398" parameters:@{@"username":@"Visac",@"unknown":@"nothing"} propertyFill:NO];
+	UIViewController *viewCtrl = [VscRouter detect:@"view3?userid=116359398" parameters:@{@"username":@"Visac",@"unknown":@"nothing"}];
 	[self.navigationController pushViewController:viewCtrl animated:YES];
 }
 -(void)clickEnter4{
-	id model = [VscRouter detect:@"model" parameters:@{@"testStr":@"testModelPass"} propertyFill:YES];
+	id model = [VscRouter detect:@"model" parameters:@{@"testStr":@"testModelPass"}];
 	id block = ^(NSString *displayStr){
 		NSLog(@"block pass value %@",displayStr);
 	};
