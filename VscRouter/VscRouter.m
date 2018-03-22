@@ -55,22 +55,24 @@
 	[self addRouteWithObject:tmpDic];
 }
 -(void)addRouteWithObject:(id)objc{
-	if ([objc isKindOfClass:[NSArray class]]) {
-		NSArray *array = objc;
-		for (id temp in array) {
-			[self addRouteWithObject:temp];
-		}
-	}else if ([objc isKindOfClass:[NSDictionary class]]) {
-		NSDictionary *dic = objc;
-		for (NSString *key in dic.allKeys) {
-			if (dic[key]) {
-				Class routeClass = NSClassFromString(dic[key]);
-				if (routeClass) {
-					[self.routeDic setObject:routeClass forKey:key];
-				}
-			}
-		}
-	}
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if ([objc isKindOfClass:[NSArray class]]) {
+            NSArray *array = objc;
+            for (id temp in array) {
+                [self addRouteWithObject:temp];
+            }
+        }else if ([objc isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = objc;
+            for (NSString *key in dic.allKeys) {
+                if (dic[key]) {
+                    Class routeClass = NSClassFromString(dic[key]);
+                    if (routeClass) {
+                        [self.routeDic setObject:routeClass forKey:key];
+                    }
+                }
+            }
+        }
+    });
 }
 -(Class)classFromRoute:(NSString *)route{
 	return self.routeDic[route];
