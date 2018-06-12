@@ -139,6 +139,12 @@
 		}
 	}
 	Class objcClass = self.routeDic[realRoute];
+    if (!objcClass) {
+        objcClass = NSClassFromString(realRoute);
+    }
+    if (!objcClass) {
+        return nil;
+    }
 	id object = [[objcClass alloc] init];
 	if ([object respondsToSelector:@selector(setParameters:)]) {
 		[object performSelector:@selector(setParameters:) withObject:dictionary];
